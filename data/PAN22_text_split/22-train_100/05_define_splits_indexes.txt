@@ -1,0 +1,15 @@
+0 Add:       3 3 3
+0 Add:       28 3 4
+1 Add:       4 3 3
+2 Add:       5 3 3
+3 Add:       6 3 3
+4 Add:       7 2 2
+[(4, 3), (3, 3), (3, 3), (3, 3), (2, 2), (40, 39)]
+
+ ===== Process. Execute time was:
+Minutes: 0.00
+Seconds: 0.02
+
+ ===== Save. Execute time was:
+Minutes: 0.00
+Seconds: 0.00

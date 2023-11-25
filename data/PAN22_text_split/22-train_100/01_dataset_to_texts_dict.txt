@@ -1,0 +1,94 @@
+
+ ===== parallel. Execute time was:
+Minutes: 0.12
+Seconds: 7.39
+
+ ===== Process. Execute time was:
+Minutes: 0.12
+Seconds: 7.41
+
+ ===== Save. Execute time was:
+Minutes: 0.00
+Seconds: 0.00
+
+=============== Problem stats
+Total problems: 100
+Total problems per class:
+True: 53
+False: 47
+
+=============== Texts stats
+Columns in dataframe: Index(['start_str', 'end_str', 'chars', 'author', 'topic', 'text_id', 'tokens',
+       'words', 'sentences', 'noascii_spaces', 'noascii_others'],
+      dtype='object')
+==========
+Total texts: 178
+chars: 2702 / 376 - 20821
+tokens: 610 / 67 - 3952
+words: 563 / 50 - 3492
+sentences: 15 / 1 - 143
+noascii_spaces: 0 / 0 - 0
+noascii_others: 8 / 0 - 127
+==========
+Authors:
+mean: 3.56 / 1 - 7
+author
+en_13     7
+en_62     7
+en_19     7
+en_77     7
+en_21     6
+en_2      6
+en_59     6
+en_75     6
+en_37     6
+en_100    6
+en_57     5
+en_112    5
+en_5      5
+en_103    5
+en_105    5
+en_110    5
+en_36     4
+en_22     4
+en_11     4
+en_111    4
+en_97     4
+en_60     4
+en_20     4
+en_99     3
+en_56     3
+en_61     3
+en_35     3
+en_67     3
+en_66     3
+en_34     3
+en_54     3
+en_3      3
+en_53     2
+en_18     2
+en_76     2
+en_52     2
+en_4      2
+en_12     2
+en_104    2
+en_108    2
+en_63     2
+en_101    2
+en_78     2
+en_113    1
+en_74     1
+en_51     1
+en_98     1
+en_72     1
+en_107    1
+en_102    1
+Name: count, dtype: int64
+Topics:
+Text per topic: 44.5 / 14 - 70
+topic
+text_message    70
+email           69
+essay           25
+memo            14
+Name: count, dtype: int64

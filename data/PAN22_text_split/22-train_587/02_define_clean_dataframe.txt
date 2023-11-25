@@ -1,0 +1,104 @@
+Duplicated problems:
+Series([], Name: text_id, dtype: object)
+Texts with less than 1 tokens:
+Empty DataFrame
+Columns: [text_id, start_str, end_str, chars]
+Index: []
+Problems with texts with less than 1 tokens:
+[]
+
+ ===== Process. Execute time was:
+Minutes: 0.00
+Seconds: 0.02
+
+ ===== Save. Execute time was:
+Minutes: 0.00
+Seconds: 0.00
+
+=============== Problem stats
+Total problems: 587
+Total problems per class:
+True: 301
+False: 286
+
+=============== Texts stats
+Columns in dataframe: Index(['start_str', 'end_str', 'chars', 'author', 'topic', 'text_id', 'tokens',
+       'words', 'sentences', 'noascii_spaces', 'noascii_others'],
+      dtype='object')
+==========
+Total texts: 696
+chars: 2504 / 230 - 22160
+tokens: 584 / 41 - 3952
+words: 542 / 31 - 3492
+sentences: 13 / 1 - 143
+noascii_spaces: 0 / 0 - 0
+noascii_others: 9 / 0 - 138
+==========
+Authors:
+mean: 12.428571428571429 / 5 - 32
+author
+en_112    32
+en_36     31
+en_110    25
+en_13     21
+en_37     20
+en_105    17
+en_103    17
+en_2      17
+en_55     17
+en_72     16
+en_97     16
+en_21     15
+en_56     15
+en_77     15
+en_62     15
+en_53     14
+en_5      14
+en_111    13
+en_19     13
+en_63     13
+en_75     13
+en_52     13
+en_11     13
+en_113    12
+en_54     12
+en_66     12
+en_34     12
+en_22     11
+en_74     11
+en_59     11
+en_3      11
+en_108    10
+en_100    10
+en_102    10
+en_99     10
+en_35     10
+en_4      10
+en_60     10
+en_101    10
+en_61      9
+en_109     9
+en_18      9
+en_76      9
+en_78      9
+en_104     9
+en_20      9
+en_51      8
+en_67      8
+en_73      8
+en_12      7
+en_96      7
+en_98      6
+en_57      6
+en_107     6
+en_58      5
+en_114     5
+Name: count, dtype: int64
+Topics:
+Text per topic: 174.0 / 48 - 303
+topic
+email           303
+text_message    270
+essay            75
+memo             48
+Name: count, dtype: int64

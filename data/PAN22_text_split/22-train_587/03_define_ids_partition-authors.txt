@@ -1,0 +1,46 @@
+part:   len: 12 truth:  12
+part:   len: 7 truth:  7
+part:   len: 7 truth:  7
+part:   len: 6 truth:  6
+part:   len: 5 truth:  5
+part:   len: 5 truth:  5
+part:   len: 5 truth:  5
+part:   len: 5 truth:  5
+part:   len: 4 truth:  4
+part:   len: 4 truth:  4
+part:   len: 3 truth:  3
+part:   len: 3 truth:  3
+part:   len: 3 truth:  3
+part:   len: 3 truth:  3
+part:   len: 3 truth:  3
+part:   len: 3 truth:  3
+part:   len: 3 truth:  3
+part:   len: 2 truth:  2
+part:   len: 2 truth:  2
+part:   len: 2 truth:  2
+part:   len: 2 truth:  2
+part:   len: 2 truth:  2
+part:   len: 1 truth:  1
+part:   len: 1 truth:  1
+part:   len: 1 truth:  1
+part:   len: 1 truth:  1
+part:   len: 73 truth:  69
+part:   len: 18 truth:  16
+part:   len: 17 truth:  16
+part:   len: 45 truth:  41
+part:   len: 20 truth:  18
+part:   len: 18 truth:  16
+part:   len: 8 truth:  7
+part:   len: 8 truth:  7
+part:   len: 7 truth:  6
+part:   len: 7 truth:  6
+part:   len: 5 truth:  4
+Total partitions:  37
+
+ ===== Process. Execute time was:
+Minutes: 0.00
+Seconds: 0.16
+
+ ===== Save. Execute time was:
+Minutes: 0.00
+Seconds: 0.02

@@ -25,7 +25,7 @@ from common_func import load_obj, save_obj, time_string, print_time
 def wrapper_TextDataset(dataset_name, lim=None, where_to_use='server'):
     """Auxiliar function to manage path to datasets"""
 
-    relative_path = '../PAN_datasets'
+    relative_path = 'C:/Users/1/Desktop/karina_diploma/AuthorshipVerification-GraphBasedSiameseNetwork/PAN_datasets'
     # ========== Original datasets ==============================
     # ===== To use the PAN 2022 dataset,
     if dataset_name == '22-train':
@@ -249,17 +249,17 @@ def dataset_to_texts_dict(dataset, f, dest_folder):
     start_time_s = time.time()
 
     # ===== Save
-    folder = os.path.join(dest_folder, 'to_texts_dict')
+    folder = os.path.join(dest_folder, 'to_texts_dict').replace("\\","/")
     if not os.path.exists(folder):
         os.makedirs(folder)
 
     stats_dict = {'df_texts': df_texts,
                   'df_stats': df_stats}
-    save_obj(stats_dict, os.path.join(folder, 'stats_dict'))
+    save_obj(stats_dict, os.path.join(folder, 'stats_dict').replace("\\","/"))
     ds_list = {'problem_list': problem_list,
                'truth_list': truth_list}
-    save_obj(ds_list, os.path.join(folder, 'ds_list'))
-    save_obj(texts_dict, os.path.join(folder, 'texts_dict'))
+    save_obj(ds_list, os.path.join(folder, 'ds_list').replace("\\","/"))
+    save_obj(texts_dict, os.path.join(folder, 'texts_dict').replace("\\","/"))
 
     # Print time
     print_time(start_time_s, 'Save', f)
@@ -306,7 +306,7 @@ def count_stats(stats_dict, ds_list, f, dest_folder=None):
         print(authors, file=f)
         plt.bar(range(len(authors.values)), authors.values)
         name = 'authors_' + os.path.basename(f.name)[:-4] + time_stamp
-        plt.savefig(os.path.join(str(dest_folder), name) + '.png')
+        plt.savefig(os.path.join(str(dest_folder), name).replace("\\","/") + '.png')
         plt.clf()
 
     if 'topic' in df_texts.columns:
@@ -317,7 +317,7 @@ def count_stats(stats_dict, ds_list, f, dest_folder=None):
         print(topics, file=f)
         plt.bar(range(len(topics.values)), topics.values)
         name = 'topics_' + os.path.basename(f.name)[:-4] + time_stamp
-        plt.savefig(os.path.join(str(dest_folder), name) + '.png')
+        plt.savefig(os.path.join(str(dest_folder), name).replace("\\","/") + '.png')
         plt.clf()
 
 
@@ -382,18 +382,18 @@ def define_clean_dataframe(stats_dict, ds_list, texts_dict, f, dest_folder,
     start_time_s = time.time()
 
     # ===== Save clean stats
-    folder = os.path.join(dest_folder, 'clean')
+    folder = os.path.join(dest_folder, 'clean').replace("\\","/")
     if not os.path.exists(folder):
         os.makedirs(folder)
 
     stats_dict_clean = {'df_stats': df_stats_clean,
                         'df_texts': df_texts_clean}
-    save_obj(stats_dict_clean, os.path.join(folder, 'stats_dict_clean'))
+    save_obj(stats_dict_clean, os.path.join(folder, 'stats_dict_clean').replace("\\","/"))
     ds_list_clean = {'problem_list': problem_clean,
                      'truth_list': truth_clean}
-    save_obj(ds_list_clean, os.path.join(folder, 'ds_list_clean'))
+    save_obj(ds_list_clean, os.path.join(folder, 'ds_list_clean').replace("\\","/"))
     # OJO, ES dest_folder
-    save_obj(texts_dict, os.path.join(dest_folder, 'texts_dict_clean'))
+    save_obj(texts_dict, os.path.join(dest_folder, 'texts_dict_clean').replace("\\","/"))
 
     # Print time
     print_time(start_time_s, 'Save', f)
@@ -561,12 +561,12 @@ def define_ids_partition(stats_dict_clean, dest_folder, f,
     start_time_s = time.time()
 
     # ===== Save
-    folder = os.path.join(dest_folder, 'partitions')
+    folder = os.path.join(dest_folder, 'partitions').replace("\\","/")
     if not os.path.exists(folder):
         os.makedirs(folder)
 
     partition = (ids_partition, total_problems)
-    save_obj(partition, os.path.join(folder, 'partition-' + label))
+    save_obj(partition, os.path.join(folder, 'partition-' + label).replace("\\","/"))
     # Print time
     print_time(start_time_s, 'Save', f)
 
@@ -583,7 +583,6 @@ def define_splits_indexes(partition, dest_folder, f,
     negativos)"""
 
     start_time_p = time.time()
-
     # ===== Unpack objects
     total_problems = partition[1]
     ids_partition = partition[0]
@@ -593,7 +592,7 @@ def define_splits_indexes(partition, dest_folder, f,
     df.set_index('part_num')
     df_val = df[['len', 'truth']]
     df_ids = df[['prob_ids']]
-    
+
     # Define positive and negative lists
     mask = (df_val['truth'] / df_val['len']) >= 0.5
     
@@ -619,7 +618,7 @@ def define_splits_indexes(partition, dest_folder, f,
                 df_op = df_pos
             else:
                 df_op = df_neg
-            
+
             cont = False
             for index, part in df_op.iterrows():
                 new_total_truth = total_truth + part['truth']
@@ -627,9 +626,11 @@ def define_splits_indexes(partition, dest_folder, f,
                 if (new_total_truth <= verif_lim and
                     new_total_len - new_total_truth <= verif_lim and
                         new_total_len <= split_size):
+                    print(1)
                     cont = True
                     # Sí nos sirve
                     partitions.append(index)
+                    print(partitions)
                     df_op.drop(index=index, inplace=True)
                     total_truth = new_total_truth
                     total_len = new_total_len
@@ -645,7 +646,7 @@ def define_splits_indexes(partition, dest_folder, f,
     part_splits_totals.append((df_pos['len'].sum() + df_neg['len'].sum(),
                                df_pos['truth'].sum() + df_neg['truth'].sum()))
     print(part_splits_totals, file=f)
-    
+
     print(part_splits)
     # Define ids_splits
     ids_splits = [np.concatenate([df_ids['prob_ids'].iloc[index]
@@ -657,10 +658,10 @@ def define_splits_indexes(partition, dest_folder, f,
     start_time_s = time.time()
 
     # ===== Save
-    folder = os.path.join(dest_folder, 'partitions')
-    save_obj(ids_splits, os.path.join(folder, 'ids_splits'))
+    folder = os.path.join(dest_folder, 'partitions').replace("\\","/")
+    save_obj(ids_splits, os.path.join(folder, 'ids_splits').replace("\\","/"))
     save_obj((part_splits, part_splits_totals),
-             os.path.join(folder, 'part_splits'))
+             os.path.join(folder, 'part_splits').replace("\\","/"))
 
     # Print time
     print_time(start_time_s, 'Save', f)
@@ -720,9 +721,9 @@ def define_dataset_splits(ds_list, indexes, dest_folder):
     ds_list_test['text_id_list'] = list(set(text_ids_test))
 
     # ===== Save
-    save_obj(ds_list_train, os.path.join(dest_folder, 'ds_list_train'))
-    save_obj(ds_list_val, os.path.join(dest_folder, 'ds_list_val'))
-    save_obj(ds_list_test, os.path.join(dest_folder, 'ds_list_test'))
+    save_obj(ds_list_train, os.path.join(dest_folder, 'ds_list_train').replace("\\","/"))
+    save_obj(ds_list_val, os.path.join(dest_folder, 'ds_list_val').replace("\\","/"))
+    save_obj(ds_list_test, os.path.join(dest_folder, 'ds_list_test').replace("\\","/"))
     return ds_list_train, ds_list_val, ds_list_test
 
 
@@ -804,11 +805,11 @@ def dataset_pipeline():
     #dataset_name = '20-small-bal'
     dataset_name = '22-train'
 #     dataset_name = '20-large-train'
-    lim = None
+    lim = 587
     p_lim = '' if lim is None else ('_' + str(lim))
 
-    dest_folder = os.path.join('../data/PAN22_text_split',
-                               dataset_name + p_lim)
+    dest_folder = os.path.join('C:/Users/1/Desktop/karina_diploma/AuthorshipVerification-GraphBasedSiameseNetwork/data/PAN22_text_split',
+                               dataset_name + p_lim).replace("\\","/")
     if not os.path.exists(dest_folder):
         os.makedirs(dest_folder)
 
@@ -816,7 +817,7 @@ def dataset_pipeline():
     dataset, param_read = wrapper_TextDataset(dataset_name, lim)
 
     print('Executing dataset_to_texts_dict...')
-    log_name = os.path.join(dest_folder, '01_dataset_to_texts_dict.txt')
+    log_name = os.path.join(dest_folder, '01_dataset_to_texts_dict.txt').replace("\\","/")
     print('log save in: ' + log_name)
     f = open(log_name, 'w+')
     stats_dict, ds_list, texts_dict = \
@@ -825,7 +826,7 @@ def dataset_pipeline():
     f.close()
 
     print('Executing define_clean_dataframe...')
-    log_name = os.path.join(dest_folder, '02_define_clean_dataframe.txt')
+    log_name = os.path.join(dest_folder, '02_define_clean_dataframe.txt').replace("\\","/")
     print('log save in: ' + log_name)
     f = open(log_name, 'w+')
     stats_dict_clean, ds_list_clean, texts_dict_clean = \
@@ -836,12 +837,12 @@ def dataset_pipeline():
 
 
     stats_dict_clean_path = os.path.join(dest_folder,
-                                         'clean/stats_dict_clean')
+                                         'clean/stats_dict_clean').replace("\\","/")
     stats_dict_clean = load_obj(stats_dict_clean_path, fast=True)
     label = 'authors'
     print('Executing define_ids_partition (' + label + ')...')
     log_name = os.path.join(dest_folder, '03_define_ids_partition-' +
-                            label + '.txt')
+                            label + '.txt').replace("\\","/")
     print('log save in: ' + log_name)
     f = open(log_name, 'w+')
     partition_authors = \
@@ -859,10 +860,10 @@ def dataset_pipeline():
 #                             asociated_fn=asociated_ids_author_topic,
 #                             label=label)
 
-    partition_authors_path = os.path.join(dest_folder, 'partitions/partition-authors')
+    partition_authors_path = os.path.join(dest_folder, 'partitions/partition-authors').replace("\\","/")
     partition_authors = load_obj(partition_authors_path, fast=True)
     print('Executing define_splits_indexes...')
-    log_name = os.path.join(dest_folder, '05_define_splits_indexes.txt')
+    log_name = os.path.join(dest_folder, '05_define_splits_indexes.txt').replace("\\","/")
     print('log save in: ' + log_name)
     f = open(log_name, 'w+')
     
@@ -870,9 +871,9 @@ def dataset_pipeline():
                                      split_proportion=0.1,
                                        split_num=5, bal_lim=0.4)
 
-    ds_list_clean = os.path.join(dest_folder, 'clean/ds_list_clean')
+    ds_list_clean = os.path.join(dest_folder, 'clean/ds_list_clean').replace("\\","/")
     ds_list_clean = load_obj(ds_list_clean, fast=True)
-    ids_splits = os.path.join(dest_folder, 'partitions/ids_splits')
+    ids_splits = os.path.join(dest_folder, 'partitions/ids_splits').replace("\\","/")
     ids_splits = load_obj(ids_splits, fast=True)
     indexes = {'test': ids_splits[0],
                'val': ids_splits[1],
@@ -881,17 +882,17 @@ def dataset_pipeline():
     ds_list_train, ds_list_val, ds_list_test = \
         define_dataset_splits(ds_list_clean, indexes, dest_folder)
 
-    ds_list_train_path = os.path.join(dest_folder, 'ds_list_train')
+    ds_list_train_path = os.path.join(dest_folder, 'ds_list_train').replace("\\","/")
     ds_list_train = load_obj(ds_list_train_path, fast=True)
-    ds_list_val_path = os.path.join(dest_folder, 'ds_list_val')
+    ds_list_val_path = os.path.join(dest_folder, 'ds_list_val').replace("\\","/")
     ds_list_val = load_obj(ds_list_val_path, fast=True)
-    ds_list_test_path = os.path.join(dest_folder, 'ds_list_test')
+    ds_list_test_path = os.path.join(dest_folder, 'ds_list_test').replace("\\","/")
     ds_list_test = load_obj(ds_list_test_path, fast=True)
     stats_dict_clean_path = \
-         os.path.join(dest_folder, 'clean/stats_dict_clean')
+         os.path.join(dest_folder, 'clean/stats_dict_clean').replace("\\","/")
     stats_dict_clean = load_obj(stats_dict_clean_path, fast=True)
     print('Executing verify_splits...')
-    log_name = os.path.join(dest_folder, '05_verify_splits.txt')
+    log_name = os.path.join(dest_folder, '05_verify_splits.txt').replace("\\","/")
     print('log save in: ' + log_name)
     f = open(log_name, 'w+')
     verify_splits(ds_list_train, ds_list_val, ds_list_test,
@@ -899,37 +900,37 @@ def dataset_pipeline():
     
     #Generar nuevos probelmas, solo para el datasetPan2022
     stats_dict_clean_path = os.path.join(dest_folder,
-                                         'clean/stats_dict_clean')
+                                         'clean/stats_dict_clean').replace("\\","/")
     stats_dict_clean = load_obj(stats_dict_clean_path, fast=True)
     
     news_t,news_f = generate_new_probelms(ds_list_train,stats_dict_clean)
     ds_list_train_n = joinNewDatasets(ds_list_train,stats_dict_clean,news_t,news_f)
-    save_obj(ds_list_train_n, os.path.join(dest_folder, 'ds_list_train_n'))
+    save_obj(ds_list_train_n, os.path.join(dest_folder, 'ds_list_train_n').replace("\\","/"))
     
     news_t,news_f = generate_new_probelms(ds_list_val,stats_dict_clean)
     ds_list_val_n = joinNewDatasets(ds_list_val,stats_dict_clean,news_t,news_f)
-    save_obj(ds_list_val_n, os.path.join(dest_folder, 'ds_list_val_n'))
+    save_obj(ds_list_val_n, os.path.join(dest_folder, 'ds_list_val_n').replace("\\","/"))
     
     news_t,news_f = generate_new_probelms(ds_list_test,stats_dict_clean)
     ds_list_test_n = joinNewDatasets(ds_list_test,stats_dict_clean,news_t,news_f)
-    save_obj(ds_list_test_n, os.path.join(dest_folder, 'ds_list_test_n'))
+    save_obj(ds_list_test_n, os.path.join(dest_folder, 'ds_list_test_n').replace("\\","/"))
     
     # ========== Print time
     print_time(start_time, 'All process')
 
 
 def compare_datasets():
-    small_folder = os.path.join('../data/PAN20_text_split/20-small-train')
+    small_folder = os.path.join('../data/PAN20_text_split/20-small-train').replace("\\","/")
     small_stats_dict_clean_path = \
-        os.path.join(small_folder, 'clean/stats_dict_clean')
+        os.path.join(small_folder, 'clean/stats_dict_clean').replace("\\","/")
     small_stats_dict_clean = load_obj(small_stats_dict_clean_path, fast=True)
     small_df_stats = small_stats_dict_clean['df_stats']
 #     small_df_texts = small_stats_dict_clean['df_texts']
 
-    large_folder = os.path.join('../data/PAN20_text_split/20-small-bal')
-    large_folder = os.path.join('../data/PAN20_text_split/20-large-train')
+    large_folder = os.path.join('../data/PAN20_text_split/20-small-bal').replace("\\","/")
+    large_folder = os.path.join('../data/PAN20_text_split/20-large-train').replace("\\","/")
     large_stats_dict_clean_path = \
-        os.path.join(large_folder, 'clean/stats_dict_clean')
+        os.path.join(large_folder, 'clean/stats_dict_clean').replace("\\","/")
     large_stats_dict_clean = load_obj(large_stats_dict_clean_path, fast=True)
     large_df_stats = large_stats_dict_clean['df_stats']
 
@@ -966,14 +967,14 @@ def compare_datasets():
     label = 'authors'
     print('Executing define_ids_partition (' + label + ')...')
     log_name = os.path.join(dest_folder, '03-2_define_ids_partition-' +
-                            label + '.txt')
+                            label + '.txt').replace("\\","/")
     print('log save in: ' + log_name)
     f = open(log_name, 'w+')
     partition_authors = \
         define_ids_partition(small_dict, dest_folder, f)
 
     print('Executing define_splits_indexes...')
-    log_name = os.path.join(dest_folder, '04-2_define_splits_indexes.txt')
+    log_name = os.path.join(dest_folder, '04-2_define_splits_indexes.txt').replace("\\","/")
     print('log save in: ' + log_name)
     f = open(log_name, 'w+')
     ids_splits = define_splits_indexes(partition_authors, dest_folder, f,
@@ -990,14 +991,14 @@ def compare_datasets():
     label = 'authors'
     print('Executing define_ids_partition (' + label + ')...')
     log_name = os.path.join(dest_folder, '03-2_define_ids_partition-' +
-                            label + '.txt')
+                            label + '.txt').replace("\\","/")
     print('log save in: ' + log_name)
     f = open(log_name, 'w+')
     partition_authors = \
         define_ids_partition(small_dict, dest_folder, f)
 
     print('Executing define_splits_indexes...')
-    log_name = os.path.join(dest_folder, '04-2_define_splits_indexes.txt')
+    log_name = os.path.join(dest_folder, '04-2_define_splits_indexes.txt').replace("\\","/")
     print('log save in: ' + log_name)
     f = open(log_name, 'w+')
     ids_splits = define_splits_indexes(partition_authors, dest_folder, f,

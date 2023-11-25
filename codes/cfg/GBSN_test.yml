@@ -4,16 +4,17 @@ CONFIG_NAME: 'GBSN_test'
 device: 'cuda:0'
 dataset_name: '22-train'
 folder_sufix: '_None_1046'
-doc_dict_folder_prefix: '../data/PAN22_graphs/'
-ds_list_folder_prefix: '../data/PAN22_text_split/'
-dest_folder_prefix: '../test/test_output_siamese/test_command_line/'
-epochs: 100
-lim:
+# ======== changed to absolute paths 
+doc_dict_folder_prefix: 'C:/Users/1/Desktop/karina_diploma/AuthorshipVerification-GraphBasedSiameseNetwork/data/PAN22_graphs/'
+ds_list_folder_prefix: 'C:/Users/1/Desktop/karina_diploma/AuthorshipVerification-GraphBasedSiameseNetwork/data/PAN22_text_split/'
+dest_folder_prefix: 'C:/Users/1/Desktop/karina_diploma/AuthorshipVerification-GraphBasedSiameseNetwork/test/test_output_siamese/test_command_line/'
+epochs: 20 # ====== changed from 100 to 20
+lim: 20 # ====== changed from 0 to 20
 checkpoint_freq: 100
 bm_free_epochs: 1
 lr: 0.001
 batch_size: 256
-num_workers: 4
+num_workers: 2 # ====== changed from 4 to 2
 
 # ========== Datasets options
 ds_op:

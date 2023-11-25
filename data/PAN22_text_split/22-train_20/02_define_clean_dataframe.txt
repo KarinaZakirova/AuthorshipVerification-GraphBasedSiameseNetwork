@@ -1,0 +1,70 @@
+Duplicated problems:
+Series([], Name: text_id, dtype: object)
+Texts with less than 1 tokens:
+Empty DataFrame
+Columns: [text_id, start_str, end_str, chars]
+Index: []
+Problems with texts with less than 1 tokens:
+[]
+
+ ===== Process. Execute time was:
+Minutes: 0.00
+Seconds: 0.02
+
+ ===== Save. Execute time was:
+Minutes: 0.00
+Seconds: 0.00
+
+=============== Problem stats
+Total problems: 20
+Total problems per class:
+True: 11
+False: 9
+
+=============== Texts stats
+Columns in dataframe: Index(['start_str', 'end_str', 'chars', 'author', 'topic', 'text_id', 'tokens',
+       'words', 'sentences', 'noascii_spaces', 'noascii_others'],
+      dtype='object')
+==========
+Total texts: 39
+chars: 2821 / 512 - 16177
+tokens: 637 / 121 - 3085
+words: 588 / 107 - 2801
+sentences: 14 / 1 - 101
+noascii_spaces: 0 / 0 - 0
+noascii_others: 8 / 0 - 127
+==========
+Authors:
+mean: 1.7727272727272727 / 1 - 4
+author
+en_60     4
+en_62     4
+en_19     4
+en_13     3
+en_112    3
+en_101    2
+en_2      2
+en_20     2
+en_59     2
+en_78     1
+en_57     1
+en_98     1
+en_77     1
+en_110    1
+en_3      1
+en_66     1
+en_12     1
+en_4      1
+en_52     1
+en_54     1
+en_76     1
+en_34     1
+Name: count, dtype: int64
+Topics:
+Text per topic: 9.75 / 2 - 16
+topic
+text_message    16
+email           15
+essay            6
+memo             2
+Name: count, dtype: int64

@@ -40,7 +40,7 @@ def save_obj(obj, name, use_joblib=None):
 def load_obj(obj_path_all, fast=False):
     obj_path, extension = os.path.splitext(obj_path_all)
     extension = '.pkl' if extension == '' else extension
-    with open(obj_path + extension, 'rb') as f:
+    with open((obj_path + extension).replace(os.sep, '/'), 'rb') as f:
         if fast:
             return joblib.load(f)
         else:

@@ -1,0 +1,38 @@
+part:   len: 4 truth:  4
+part:   len: 4 truth:  4
+part:   len: 4 truth:  4
+part:   len: 3 truth:  3
+part:   len: 3 truth:  3
+part:   len: 3 truth:  3
+part:   len: 3 truth:  3
+part:   len: 2 truth:  2
+part:   len: 2 truth:  2
+part:   len: 2 truth:  2
+part:   len: 2 truth:  2
+part:   len: 2 truth:  2
+part:   len: 2 truth:  2
+part:   len: 2 truth:  2
+part:   len: 2 truth:  2
+part:   len: 1 truth:  1
+part:   len: 1 truth:  1
+part:   len: 1 truth:  1
+part:   len: 1 truth:  1
+part:   len: 1 truth:  1
+part:   len: 1 truth:  1
+part:   len: 1 truth:  1
+part:   len: 1 truth:  1
+part:   len: 1 truth:  1
+part:   len: 1 truth:  1
+part:   len: 1 truth:  1
+part:   len: 1 truth:  1
+part:   len: 2 truth:  1
+part:   len: 1 truth:  0
+Total partitions:  29
+
+ ===== Process. Execute time was:
+Minutes: 0.00
+Seconds: 0.11
+
+ ===== Save. Execute time was:
+Minutes: 0.00
+Seconds: 0.00

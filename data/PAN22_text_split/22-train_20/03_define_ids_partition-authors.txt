@@ -1,0 +1,20 @@
+part:   len: 2 truth:  2
+part:   len: 2 truth:  2
+part:   len: 2 truth:  2
+part:   len: 1 truth:  1
+part:   len: 1 truth:  1
+part:   len: 1 truth:  1
+part:   len: 1 truth:  1
+part:   len: 1 truth:  1
+part:   len: 1 truth:  0
+part:   len: 1 truth:  0
+part:   len: 1 truth:  0
+Total partitions:  11
+
+ ===== Process. Execute time was:
+Minutes: 0.00
+Seconds: 0.06
+
+ ===== Save. Execute time was:
+Minutes: 0.00
+Seconds: 0.00
