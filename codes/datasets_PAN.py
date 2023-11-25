@@ -626,11 +626,9 @@ def define_splits_indexes(partition, dest_folder, f,
                 if (new_total_truth <= verif_lim and
                     new_total_len - new_total_truth <= verif_lim and
                         new_total_len <= split_size):
-                    print(1)
                     cont = True
                     # Sí nos sirve
                     partitions.append(index)
-                    print(partitions)
                     df_op.drop(index=index, inplace=True)
                     total_truth = new_total_truth
                     total_len = new_total_len

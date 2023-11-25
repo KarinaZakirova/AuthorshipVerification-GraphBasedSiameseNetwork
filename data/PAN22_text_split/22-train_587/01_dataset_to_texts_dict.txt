@@ -1,11 +1,11 @@
 
  ===== parallel. Execute time was:
-Minutes: 0.13
-Seconds: 7.77
+Minutes: 0.18
+Seconds: 10.99
 
  ===== Process. Execute time was:
-Minutes: 0.13
-Seconds: 7.82
+Minutes: 0.18
+Seconds: 11.06
 
  ===== Save. Execute time was:
 Minutes: 0.00
